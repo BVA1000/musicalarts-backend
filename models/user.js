@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      this.hasMany(models.Inventory);
+      this.hasMany(models.Product);
       this.hasMany(models.Order);
     }
   }
@@ -31,10 +31,6 @@ module.exports = (sequelize, DataTypes) => {
       phoneNumber: {
         type: DataTypes.STRING,
       },
-      // accountType: {
-      //   type: DataTypes.ENUM("seller", "buyer"),
-      //   allowNull: true,
-      // },
       admin: {
         type: DataTypes.BOOLEAN
       },

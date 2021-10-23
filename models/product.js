@@ -1,17 +1,17 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 const order = require('./order');
 module.exports = (sequelize, DataTypes) => {
-  class Inventory extends Model {
+  class Product extends Model {
     static associate(models) {
       this.belongsTo(models.User);
-      this.belongsToMany(models.Order, { through: models.InventoryOrder });
+      // this.belongsToMany(models.ProductOrdered, {
+      //   through: 'orderedProducts'
+      // });
     }
   };
-  Inventory.init({
-    itemName: {
+  Product.init({
+    productName: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -21,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false
     },
     location: {
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Inventory',
+    modelName: 'Product',
   });
-  return Inventory;
+  return Product;
 };
