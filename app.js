@@ -10,9 +10,7 @@ var indexRouter = require("./routes/index");
 var userRouter = require("./routes/user");
 var productRouter = require("./routes/products");
 var ordersRouter = require("./routes/orders");
-// var shippinginfosRouter = require("./routes/shippinginfos");
-// var paymentmethodsRouter = require("./routes/paymentmethods");
-
+var productorderedRouter = require("./routes/productordered");
 var app = express();
 
 app.use(logger("dev"));
@@ -47,7 +45,6 @@ app.use(async (req, res, next) => {
 app.use("/user", userRouter);
 app.use("/products", productRouter);
 app.use("/orders", ordersRouter);
-// app.use("/shippinginfos", shippinginfosRouter);
-// app.use("/paymentmethods", paymentmethodsRouter);
+app.use("/productordered", productorderedRouter);
 
 module.exports = app;
